@@ -10,13 +10,6 @@ console.log("Hello from script");
 function getComputerChoice()
 { 
     let randomNum = Math.floor(Math.random() * 3);
-    
-    // if (randomNum === 0)
-    //     return 'Rock';
-    // else if (randomNum === 1)
-    //     return 'Paper';
-    // else
-    //     return 'Scissors';
 
     switch (randomNum)
     {
@@ -33,7 +26,8 @@ function getComputerChoice()
     getHumanChoice method 
     - retuns rock, paper, & scissors based on numbers 0-2, any other number will return rock
 */ 
-let getHumanChoice = () => {
+let getHumanChoice = () => 
+{
     return (prompt("enter rock, paper, or scissors", "rock")); // prompt gets input as a string
 }
 
@@ -45,7 +39,8 @@ let compScore = userScore = 0;
 /*
     playRound method
 */
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice)
+{
     // making humanChoice case insensitive
     humanChoice = String(humanChoice).toLocaleLowerCase();
 
@@ -58,16 +53,16 @@ function playRound(humanChoice, computerChoice){
     }
     else
     { // not the same
-        if (humanChoice === "scissor")
+        if (humanChoice === "scissors")
         {
             if (computerChoice === "paper")
             {
-                console.log('You win! scissor beats paper');
+                console.log('You win! scissors beats paper');
                 userScore++;
             }
             else 
             { // if computer got rock
-                console.log('You loose! rock beats scissor');
+                console.log('You loose! rock beats scissors');
                 compScore++;
             }
         }
@@ -80,7 +75,7 @@ function playRound(humanChoice, computerChoice){
             }
             else
             { // if computer got scissors
-                console.log('You win! rock beats scissor');
+                console.log('You win! rock beats scissors');
                 userScore++;
             }
         }
@@ -98,11 +93,34 @@ function playRound(humanChoice, computerChoice){
             }
         }
     }
-    
-
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+//playRound(getHumanChoice(), getComputerChoice());
+// testing playRound
+// playRound("scissors", "paper");
+//console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
+
+
+function playGame()
+{
+    for(let i=1; i<=5; i++)
+    {
+        console.log(`Round ${i}`);
+        playRound(getHumanChoice(), getComputerChoice());
+        console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
+    }
+
+    console.log(`Final score\nUser score: ${userScore}\nComputer score: ${compScore}`);
+    
+    if (userScore === compScore)
+        console.log("Tie!");
+    else if (userScore > compScore)
+        console.log("User won!");
+    else
+        console.log("Computer won!");
+}
+
+playGame();
 
 // for (let i = 0; i<5; i++)
 // {
