@@ -105,7 +105,7 @@ function playGame()
 {
     for(let i=1; i<=5; i++)
     {
-        console.log(`Round ${i}`);
+        console.log(`\nRound ${i}`);
         playRound(getHumanChoice(), getComputerChoice());
         console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
     }
@@ -120,7 +120,7 @@ function playGame()
         console.log("Computer won!");
 }
 
-playGame();
+//playGame();
 
 // for (let i = 0; i<5; i++)
 // {
@@ -135,4 +135,12 @@ playGame();
 //     x = Math.floor(Math.random() * 3);
 // }
 
+// code for button
+let startButton = document.getElementById("start");
 
+startButton.addEventListener("click", startFun);
+
+function startFun(){
+    console.log("Begin!");
+    playGame();
+}
