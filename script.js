@@ -101,16 +101,30 @@ function playRound(humanChoice, computerChoice)
 //console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
 
 
+/**
+ * Step 2.2: adding event listeners to the 3 buttons
+ */ 
+let btnContainer = document.querySelector('#btnContainer');
+
+btnContainer.addEventListener('click', (e) =>
+{
+    let target = e.target.innerText; // get the text of the button so I can use it to compair
+        
+    console.log(target);
+    playRound(target, getComputerChoice());
+});
+
+
 function playGame()
 {
-    for(let i=1; i<=5; i++)
+    for(let i=1; i<=1; i++) // changed to 1 round
     {
         console.log(`\nRound ${i}`);
-        playRound(getHumanChoice(), getComputerChoice());
+        //playRound(getHumanChoice(), getComputerChoice());
         console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
     }
 
-    console.log(`Final score\nUser score: ${userScore}\nComputer score: ${compScore}`);
+    console.log(`\nFinal score\nUser score: ${userScore}\nComputer score: ${compScore}`);
     
     if (userScore === compScore)
         console.log("Tie!");
@@ -144,3 +158,6 @@ function startFun(){
     console.log("Begin!");
     playGame();
 }
+
+
+
