@@ -80,7 +80,7 @@ function playRound(humanChoice, computerChoice)
             }
         }
         else
-        { // if human got paper
+        { // if human got paper, defult choice is paper
             if (computerChoice === "scissors")
             {
                 console.log('You loose! scissors beats paper');
