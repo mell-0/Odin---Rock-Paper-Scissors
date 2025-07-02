@@ -1,5 +1,15 @@
 console.log("Hello from script");
 
+// initalizing computer and human scores
+let compScore = userScore = round = 0;
+
+// selecting elements to display resutls
+let roundElement = document.querySelector("#round");
+let userS = document.querySelector("#userScore");
+let compS = document.querySelector("#compScore");
+let resutls = document.querySelector("#resultBoard");
+
+
 /*
     getComputerChoice method 
     - will randomly return one of the following string values: “rock”, “paper” or “scissors”
@@ -32,10 +42,6 @@ let getHumanChoice = () =>
 }
 
 
-// initalizing computer and human scores
-let compScore = userScore = 0;
-
-
 /*
     playRound method
 */
@@ -44,26 +50,35 @@ function playRound(humanChoice, computerChoice)
     // making humanChoice case insensitive
     humanChoice = String(humanChoice).toLocaleLowerCase();
 
+    let resultStr = `You picked: ${humanChoice}<br>Computer picked: ${computerChoice}`;
+    resutls.innerHTML = resultStr;
+
     console.log(`You picked: ${humanChoice}`);
     console.log(`Computer picked: ${computerChoice}`);
+
+    let otherStr = ''; // used to store the other scenarios
 
     if (humanChoice === computerChoice)
     {
         console.log("Tie! Both got " + humanChoice);
+        resutls.innerHTML += "<br>Tie! Both got " + humanChoice;
     }
     else
     { // not the same
+        
         if (humanChoice === "scissors")
         {
             if (computerChoice === "paper")
             {
                 console.log('You win! scissors beats paper');
                 userScore++;
+                otherStr = 'You win! scissors beats paper';
             }
             else 
             { // if computer got rock
                 console.log('You loose! rock beats scissors');
                 compScore++;
+                otherStr = 'You loose! rock beats scissors';
             }
         }
         else if (humanChoice === "rock")
@@ -72,11 +87,13 @@ function playRound(humanChoice, computerChoice)
             {
                 console.log('You loose! paper beats rock');
                 compScore++;
+                otherStr = 'You loose! paper beats rock';
             }
             else
             { // if computer got scissors
                 console.log('You win! rock beats scissors');
                 userScore++;
+                otherStr = 'You win! rock beats scissors';
             }
         }
         else
@@ -85,20 +102,19 @@ function playRound(humanChoice, computerChoice)
             {
                 console.log('You loose! scissors beats paper');
                 compScore++;
+                otherStr = 'You loose! scissors beats paper';
             }
             else
             { // if computer got rock
                 console.log('You win! paper beats rock');
                 userScore++;
+                otherStr = 'You win! paper beats rock';
             }
         }
     }
-}
+    resutls.innerHTML += '<br>' + otherStr;
 
-//playRound(getHumanChoice(), getComputerChoice());
-// testing playRound
-// playRound("scissors", "paper");
-//console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
+}
 
 
 /**
@@ -112,52 +128,71 @@ btnContainer.addEventListener('click', (e) =>
         
     console.log(target);
     playRound(target, getComputerChoice());
+    playGame();
 });
 
-
+// this version has no loop
 function playGame()
 {
-    for(let i=1; i<=1; i++) // changed to 1 round
-    {
-        console.log(`\nRound ${i}`);
-        //playRound(getHumanChoice(), getComputerChoice());
-        console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
-    }
-
-    console.log(`\nFinal score\nUser score: ${userScore}\nComputer score: ${compScore}`);
+    console.log(`\nRound ${++round}`);
+    roundElement.textContent = round;
     
-    if (userScore === compScore)
-        console.log("Tie!");
-    else if (userScore > compScore)
-        console.log("User won!");
-    else
-        console.log("Computer won!");
+    //playRound(getHumanChoice(), getComputerChoice());
+    console.log(`User score: ${userScore}\nComputer score: ${compScore}` + '\n');
+    userS.textContent = userScore;
+    compS.textContent = compScore;
+    
+    if (round === 5)
+    {
+        console.log(`\nFinal score\nUser score: ${userScore}\nComputer score: ${compScore}`);
+        
+        if (userScore === compScore)
+            console.log("Tie!");
+        else if (userScore > compScore)
+            console.log("User won!");
+        else
+            console.log("Computer won!");
+
+        round = userScore = compScore = 0; // restarting values
+    }
+    
 }
 
-//playGame();
-
-// for (let i = 0; i<5; i++)
+// function playGame()
 // {
-//     console.log(getHumanChoice());
+//     for(let i=1; i<=1; i++) // changed to 1 round
+//     {
+//         console.log(`\nRound ${i}`);
+//         playRound(getHumanChoice(), getComputerChoice());
+//         console.log(`User score: ${userScore}\nComputer score: ${compScore}`);
+//     }
+
+//     console.log(`\nFinal score\nUser score: ${userScore}\nComputer score: ${compScore}`);
+    
+//     if (userScore === compScore)
+//         console.log("Tie!");
+//     else if (userScore > compScore)
+//         console.log("User won!");
+//     else
+//         console.log("Computer won!");
 // }
 
-// testing the random number generator
-// let x = Math.floor(Math.random() * 3);
-// while (x !== 1)
-// {
-//     console.log(x);
-//     x = Math.floor(Math.random() * 3);
-// }
 
 // code for button
-let startButton = document.getElementById("start");
+// let startButton = document.getElementById("start");
 
-startButton.addEventListener("click", startFun);
+// startButton.addEventListener("click", startFun);
 
-function startFun(){
-    console.log("Begin!");
-    playGame();
-}
+// function startFun(){
+//     console.log("Begin!");
+//     playGame();
+// }
 
 
-
+/**
+ * Notes:
+ * - User starts the game by pressing one of the 3 buttons
+ * - Each round, when a button is clicked, display the round, choices, points, & the winner of the round
+ * - At the 5th round, display who won with points in addition to what's displayed each round
+ * - After 5th round, reset
+ */

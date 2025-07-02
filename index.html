@@ -9,20 +9,19 @@
 </head>
 <body>
 
-    <p>
-        Welcome to my rock, paper, scissors game
-    </p>
-    <p>
-        To start the game, right click anywhere on the web page, click inspect, & then click on the console tab
-    </p>
-    <p> 
-        You should see a message that says this: Hello from script
-    </p>
-    <p>
-        If you do, click on the button below to start the game
-    </p>
+    <p>Welcome to my rock, paper, scissors game!</p>
 
-    <button id="start">Start</button>
+    <p>Click on the buttons below to start</p>
+
+    <div class="score-board">
+        <div>User score: <span id="userScore">0</span> </div>
+        <div>Computer score: <span id="compScore">0</span> </div>
+    </div>
+
+    <p>Round: <span id="round">0</span></p>
+    <p id="resultBoard"></p>
+
+    <!-- <button id="start">Start</button> -->
 
      <!-- step 2.2: adding a container for the buttons so that I don't have to put listeners to all of them -->
     <div id="btnContainer">

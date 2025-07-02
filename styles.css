@@ -10,3 +10,11 @@ body {
 button {
   align-self: center; this stops button from stretching horizontally 
 } */
+
+.score-board,
+#btnContainer
+{
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}
