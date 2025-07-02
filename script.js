@@ -112,9 +112,9 @@ function playRound(humanChoice, computerChoice)
                 otherStr = 'You win! paper beats rock';
             }
         }
-    }
-    resutls.innerHTML += '<br>' + otherStr;
 
+        resutls.innerHTML += '<br>' + otherStr;
+    }
 }
 
 
@@ -165,7 +165,7 @@ function playGame()
             winner = "Computer won!";
         }
             
-        resutls.innerHTML += '<br>' + winner;
+        resutls.innerHTML += '<br><br>' + winner;
         round = userScore = compScore = 0; // restarting values
     }
     
