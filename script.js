@@ -9,6 +9,7 @@ let userS = document.querySelector("#userScore");
 let compS = document.querySelector("#compScore");
 let resutls = document.querySelector("#resultBoard");
 
+let winner = '';
 
 /*
     getComputerChoice method 
@@ -129,6 +130,7 @@ btnContainer.addEventListener('click', (e) =>
     console.log(target);
     playRound(target, getComputerChoice());
     playGame();
+    
 });
 
 // this version has no loop
@@ -147,12 +149,23 @@ function playGame()
         console.log(`\nFinal score\nUser score: ${userScore}\nComputer score: ${compScore}`);
         
         if (userScore === compScore)
-            console.log("Tie!");
-        else if (userScore > compScore)
+        {
+            console.log("Tie!"); 
+            winner = "Tie!";
+        }
+            
+        else if (userScore > compScore)   
+        {
             console.log("User won!");
+            winner = "User won!";
+        }
         else
+        {
             console.log("Computer won!");
-
+            winner = "Computer won!";
+        }
+            
+        resutls.innerHTML += '<br>' + winner;
         round = userScore = compScore = 0; // restarting values
     }
     
